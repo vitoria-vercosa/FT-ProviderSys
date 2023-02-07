@@ -5,10 +5,11 @@ namespace FT_ProviderSys.Services.Interfaces
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        Product? GetById(int id);
-        int Create(ProductCreateRequestDTO product);
-        bool Update(ProductUpdateRequestDTO updatedProduct);
-        bool Delete(int id);
+        Task<IEnumerable<Product>> GetAll();
+        Task<Product?> GetById(int id);
+        Task<double> GetAmountByProductIds(IEnumerable<int> productIds);
+        Task<int> Create(ProductCreateRequestDTO inputProduct);
+        Task<bool> Update(ProductUpdateRequestDTO inputProduct);
+        Task<bool> Delete(int id);
     }
 }

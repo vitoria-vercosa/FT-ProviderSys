@@ -7,14 +7,15 @@
         public string ProductName { get; set; }
         public string Description { get; set; }
         public DateTime RegistrationDate { get; init; } = DateTime.UtcNow;
-        public float Price { get; set; }
+        public double Price { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 
         public Product()
         {
 
         }
 
-        public Product(string code, string productName, string description, float price)
+        public Product(string code, string productName, string description, double price)
         {
             this.Code = code;
             this.ProductName = productName;

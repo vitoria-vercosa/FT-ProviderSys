@@ -17,15 +17,15 @@ namespace FT_ProviderSys.Controllers
         }
 
         [HttpGet("get-all")]
-        public ActionResult<List<Provider>> GetAll()
+        public async Task<ActionResult<List<Provider>>> GetAll()
         {
-            return Ok(_providerService.GetAll());
+            return Ok(await _providerService.GetAll());
         }
 
         [HttpGet("get-by-id")]
-        public ActionResult<Provider> GetById(int id)
+        public async Task<ActionResult<Provider>> GetById(int id)
         {
-            var result = _providerService.GetById(id);
+            var result = await _providerService.GetById(id);
 
             if (result != null) return Ok(result);
 
@@ -40,17 +40,17 @@ namespace FT_ProviderSys.Controllers
         }
         
         [HttpPut("update")]
-        public ActionResult Update([FromBody]ProviderUpdateRequestDTO inputProvider)
+        public async Task<ActionResult> Update([FromBody]ProviderUpdateRequestDTO inputProvider)
         {
-            if( _providerService.Update(inputProvider) ) return NoContent();
+            if( await _providerService.Update(inputProvider) ) return NoContent();
 
             return BadRequest();
         }
 
         [HttpDelete("delete")]
-        public ActionResult Delete([FromRoute]int idProvider)
+        public async Task<ActionResult> Delete([FromRoute]int idProvider)
         {
-            if(_providerService.Delete(idProvider)) return NoContent();
+            if(await _providerService.Delete(idProvider)) return NoContent();
 
             return BadRequest();
         }

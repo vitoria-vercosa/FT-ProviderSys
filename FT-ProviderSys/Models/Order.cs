@@ -7,15 +7,15 @@
         public DateTime OrderDate { get; set; }
         //public IEnumerable<int>? ProductIds { get; set; }
         public int ProviderId { get; set; }
-        public float? Amount { get; set; }
+        public double? Amount { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 
         public Order()
         {
 
         }
-        public Order(string code, int providerId, float amount)
+        public Order(string code, int providerId, double amount)
         {
             this.Code = code;
             //this.ProductIds = productIds;

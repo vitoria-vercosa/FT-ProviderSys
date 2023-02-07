@@ -10,8 +10,8 @@ namespace FT_ProviderSys.Data.Mappings
         {
             builder.ToTable("Order_Product");
             builder.HasKey(x => new { x.OrderId, x.ProductId } );
-            builder.HasOne<Order>(x => x.Order).WithMany().HasForeignKey(x => x.OrderId);
-            builder.HasOne<Product>(x => x.Product).WithMany().HasForeignKey(x => x.ProductId);
+            builder.HasOne<Order>(x => x.Order).WithMany(x => x.OrderProducts).HasForeignKey(x => x.OrderId);
+            builder.HasOne<Product>(x => x.Product).WithMany(x => x.OrderProducts).HasForeignKey(x => x.ProductId);
         }
     }
 }

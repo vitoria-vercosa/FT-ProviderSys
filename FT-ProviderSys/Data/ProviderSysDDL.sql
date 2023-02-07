@@ -32,6 +32,7 @@ CREATE TABLE Order_Product
 (
 	OrderId INT NOT NULL,
 	ProductId INT NOT NULL,
+	ProductQuantity INT NOT NULL,
 	CONSTRAINT [FK_OP_Order] FOREIGN KEY (OrderId) REFERENCES [Order](OrderId),
 	CONSTRAINT [FK_OP_Product] FOREIGN KEY (ProductId) REFERENCES [Product](ProductId),
 	CONSTRAINT [PK_Table] PRIMARY KEY ([OrderId],[ProductId])

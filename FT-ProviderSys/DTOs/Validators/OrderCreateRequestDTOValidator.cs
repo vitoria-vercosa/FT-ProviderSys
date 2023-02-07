@@ -11,12 +11,10 @@ namespace FT_ProviderSys.DTOs.Validators
                 .NotNull()
                 .WithMessage("The 'Order Code' cannot be null or empty.");
 
-            RuleFor(x => x.ProductIds)
+            RuleFor(x => x.Products)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("The 'Order Products' cannot be null or empty.")
-                .ForEach(item => item.GreaterThan(0))
-                .WithMessage("The 'Product Ids' must be valids.");
+                .WithMessage("The 'Order Products' cannot be null or empty.");
 
             RuleFor(x => x.ProviderId)
                 .NotNull()

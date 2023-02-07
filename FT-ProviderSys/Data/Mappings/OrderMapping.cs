@@ -10,6 +10,8 @@ namespace FT_ProviderSys.Data.Mappings
         {
             builder.ToTable("Order");
             builder.HasKey(x => x.OrderId);
+            builder.HasMany(order => order.OrderProducts).WithOne(order => order.Order);
+
         }
     }
 }

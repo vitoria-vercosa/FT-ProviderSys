@@ -18,40 +18,46 @@ namespace FT_ProviderSys.Controllers
         }
 
         [HttpGet("get-all")]
-        public ActionResult<List<Order>> GetAll()
+        public async Task<ActionResult<List<Order>>> GetAll()
         {
-            return Ok(_orderService.GetAll());
+            return Ok(await _orderService.GetAll());
         }
 
         [HttpGet("get-by-id")]
-        public ActionResult<Order> GetById(int id)
+        public async Task<ActionResult<Order>> GetById(int id)
         {
-            var result = _orderService.GetById(id);
+            var result = await _orderService.GetById(id);
 
             if (result != null) return Ok(result);
 
             return NotFound();
         }
 
-        [HttpPost("create-order")]
-        public ActionResult Create([FromBody] OrderCreateRequestDTO inputOrder)
+        [HttpGet("get-by-provider")]
+        public async Task<IEnumerable<Order>> GetByProviderId(int providerId)
         {
-            _orderService.Create(inputOrder);
-            return Created("", true);
+            return await _orderService.GetByProviderId(providerId);
+        }
+
+        [HttpPost("create-order")]
+        public async Task<ActionResult> Create([FromBody] OrderCreateRequestDTO inputOrder)
+        {
+            var result = await _orderService.Create(inputOrder);
+            return Created("", result);
         }
 
         [HttpPut("update-order")]
-        public ActionResult Update(OrderUpdateRequestDTO inputOrder)
+        public async Task<ActionResult> Update(OrderUpdateRequestDTO inputOrder)
         {
-            if (_orderService.Update(inputOrder)) return NoContent();
+            if (await _orderService.Update(inputOrder)) return NoContent();
 
             return BadRequest();
         }
 
         [HttpDelete("delete-order")]
-        public ActionResult Delete(int idOrder)
+        public async Task<ActionResult> Delete(int idOrder)
         {
-            if( _orderService.Delete(idOrder) ) return NoContent();
+            if (await _orderService.Delete(idOrder) ) return NoContent();
 
             return NotFound();
         }
