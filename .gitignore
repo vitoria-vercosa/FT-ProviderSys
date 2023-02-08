@@ -5,6 +5,8 @@
 
 /FT-ProviderSys/bin/Debug
 /FT-ProviderSys/obj
+/FT-ProviderSys/FT-ProviderSys.UnitTest/bin
+/FT-ProviderSys/FT-ProviderSys.UnitTest/obj
 
 # User-specific files
 *.rsuser
